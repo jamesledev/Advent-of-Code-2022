@@ -11,17 +11,21 @@ fileSelector.addEventListener('change', (event) => {
 function solution(data) {
   const theData = data.split('\n').map(Number);
   console.log(theData);
+  // .map(Number);
   const answerArray = [];
   let number = 0;
   for (let i = 0; i < theData.length; i++) {
-    if (theData[i] == 0) {
+    if (!theData[i] == '') {
+      number = number + theData[i];
+      console.log('added' + number);
+    } else {
+      console.log('deleted ' + number);
       answerArray.push(number);
       number = 0;
-    } else {
-      number = number + theData[i];
     }
   }
-  console.log(Math.max(answerArray));
   const answer = Math.max(answerArray);
-  return answer.toString();
+  console.log(answerArray);
+  console.log(Math.max(...answerArray));
+  return answer;
 }
