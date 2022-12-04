@@ -10,22 +10,28 @@ fileSelector.addEventListener('change', (event) => {
 
 function solution(data) {
   const theData = data.split('\n').map(Number);
-  console.log(theData);
-  // .map(Number);
+  // console.log(theData);
   const answerArray = [];
   let number = 0;
   for (let i = 0; i < theData.length; i++) {
     if (!theData[i] == '') {
       number = number + theData[i];
-      console.log('added' + number);
     } else {
-      console.log('deleted ' + number);
       answerArray.push(number);
       number = 0;
     }
   }
-  const answer = Math.max(...answerArray);
-  console.log(answerArray);
-  console.log(Math.max(...answerArray));
+  let answer = 0;
+  for (let y = 0; y < 3; y++) {
+    const highNumber = Math.max(...answerArray);
+    const index = answerArray.indexOf(highNumber);
+    answer = answer + highNumber;
+    answerArray.splice(index, 1); // 2nd parameter means remove one item only
+    console.log(index);
+    console.log(highNumber);
+    console.log(answerArray);
+  }
+
+  console.log(answer);
   return answer;
 }
